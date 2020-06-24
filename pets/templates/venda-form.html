@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+      <form method="POST" novalidate>
+        {% csrf_token %}
+          <div class="form-group">
+            {{ form.Nome |as_crispy_field  }}
+          </div>
+          <div class="form-group">
+            {{ form.Raca |as_crispy_field  }}
+          </div>
+          <div class="form-group">
+            {{ form.Genero |as_crispy_field  }}
+          </div>
+          <div class="form-group">
+            {{ form.Cor |as_crispy_field  }}
+          </div>
+          <div class="form-group">
+            {{ form.Data |as_crispy_field  }}
+          </div>
+          <div class="form-group">
+            {{ form.Local |as_crispy_field  }}
+          </div>
+        <div class="form-group">
+            {{ form.Observacoes |as_crispy_field  }}
+          </div>
+          <button type="submit" class="btn btn-success">Salvar</button>
+            {% if pet %}
+                 <a href="{% url 'delete_pet' pet.id %}" class="btn btn-danger">Excluir</a>
+            {% endif %}
+          <a class="btn btn-light" href="{% url 'list_pet' %}">Cancelar</a>
+      </form>
+{% endblock %}
